@@ -5,9 +5,10 @@ using System;
 public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
-    [SerializeField] private float _jumpingForce;
+    [SerializeField] private float _flyForce;
 
     public Action<float> Moving;
+    public Action Flying;
 
     private Rigidbody2D _rigidbody;
 
@@ -22,7 +23,7 @@ public class PlayerMover : MonoBehaviour
             return;
 
         Movement();
-        Jumping();
+        Fly();
     }
 
     private void Movement()
@@ -33,11 +34,13 @@ public class PlayerMover : MonoBehaviour
         Moving?.Invoke(movement);
     }
 
-    private void Jumping()
+    private void Fly()
     {
         if(Input.GetKey(KeyCode.Space))
         {
-            _rigidbody.AddForce(Vector2.up * _jumpingForce * Time.deltaTime);
+            _rigidbody.AddForce(Vector2.up * _flyForce * Time.deltaTime);
+
+            Flying?.Invoke();
         }
     }
 }

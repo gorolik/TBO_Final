@@ -17,13 +17,18 @@ public class Finish : MonoBehaviour
 
     private void Update()
     {
+        TryFinish();   
+    }
+
+    private void TryFinish()
+    {
         if (_finished == true)
             return;
 
-        if(Vector2.Distance(transform.position, _player.position) < _finishDistance)
+        if (Vector2.Distance(transform.position, _player.position) < _finishDistance)
         {
             _finished = true;
             OnFinished?.Invoke();
-        }    
+        }
     }
 }

@@ -8,11 +8,11 @@ public class CameraMover : MonoBehaviour
 
     private void LateUpdate()
     {
-        float x = Mathf.Lerp(transform.position.x, _player.position.x, Time.deltaTime * _damping);
-        float y = Mathf.Lerp(transform.position.y, _player.position.y, Time.deltaTime * _damping);
+        float x = Mathf.Lerp(transform.position.x, _player.position.x + _offset.x, Time.deltaTime * _damping);
+        float y = Mathf.Lerp(transform.position.y, _player.position.y + _offset.y, Time.deltaTime * _damping);
         float z = -10;
 
-        Vector3 position = new Vector3(x, y, z) + (Vector3)_offset;
+        Vector3 position = new Vector3(x, y, z);
 
         transform.position = position;
     }

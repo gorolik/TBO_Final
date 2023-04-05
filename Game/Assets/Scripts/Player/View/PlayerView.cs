@@ -9,11 +9,13 @@ public class PlayerView : MonoBehaviour
     private void OnEnable()
     {
         _mover.Moving += OnPlayerMoving;
+        _mover.Flying += OnPlayerFly;
     }
 
     private void OnDisable()
     {
         _mover.Moving -= OnPlayerMoving;
+        _mover.Flying -= OnPlayerFly;
     }
 
     private void OnPlayerMoving(float movement)
@@ -25,5 +27,10 @@ public class PlayerView : MonoBehaviour
             scaleValue = -1;
 
         _view.localScale = new Vector3(scaleValue, _view.localScale.y, _view.localScale.z);
+    }
+
+    private void OnPlayerFly()
+    {
+
     }
 }
